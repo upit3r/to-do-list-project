@@ -4,6 +4,16 @@ using Project.Models;
 namespace Project.Data{
     
     public class MockProjectRepository : IProjectRepository{
+
+        public void CreateCommand(Command cmd){
+            throw new System.NotImplementedException();
+        }
+
+        public void DeleteCommand(Command cmd){
+            throw new System.NotImplementedException();
+        }
+
+        
         public IEnumerable<Command> GetAllCommands(){
             var commands = new List<Command>{
                 new Command{Id=0, Heading = "make dotnet project", Description="description of this project", Signature = "upit2r"},
@@ -16,6 +26,16 @@ namespace Project.Data{
 
         public Command GetCommandById(int id){
             return new Command{Id=0, Heading = "make dotnet project", Description="description of this project", Signature = "upit2r"};
+        }
+
+         public bool SaveChanges()
+        {
+            throw new System.NotImplementedException();
+        }
+
+         public void UpdateCommand(Command cmd)
+        {
+            throw new System.NotImplementedException();
         }
         
     }
