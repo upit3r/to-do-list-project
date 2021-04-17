@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,8 +27,12 @@ namespace Project
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ProjectContext>(opt => opt.UseSqlServer
+                (Configuration.GetConnectionString("ProjectConnection")));
             services.AddControllers();
-            services.AddScoped<IProjectRepository, MockProjectRepository>();
+
+            //services.AddScoped<IProjectRepository, MockProjectRepository>();
+            services.AddScoped<IProjectRepository, SqlProjectRepository>();
         }
 
         
